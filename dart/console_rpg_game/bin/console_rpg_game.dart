@@ -2,6 +2,10 @@ import 'dart:io';
 import 'package:console_rpg_game/character.dart';
 
 void main(List<String> arguments) {
+  int? characterHp = 0;
+  int? characterAtk = 0;
+  int? characterDef = 0;
+
   // 캐릭터 파일 정보 읽어오기
   try {
     final characterFile = File('data/csv/character.txt');
@@ -11,9 +15,9 @@ void main(List<String> arguments) {
     // 캐릭터 파일 포맷이 잘못 되었을 경우
     if (stats.length != 3) throw '파일 포맷 오류!';
 
-    int? characterHp = int.tryParse(stats[0]);
-    int? characterAtk = int.tryParse(stats[1]);
-    int? characterDef = int.tryParse(stats[2]);
+    characterHp = int.tryParse(stats[0]);
+    characterAtk = int.tryParse(stats[1]);
+    characterDef = int.tryParse(stats[2]);
 
     if (characterHp == null) throw 'Hp 초기화 실패';
     if (characterAtk == null) throw 'Atk 초기화 실패';

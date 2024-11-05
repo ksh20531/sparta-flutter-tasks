@@ -1,5 +1,4 @@
-import 'package:console_rpg_game/monster.dart';
-
+import 'monster.dart';
 import 'character.dart';
 
 class Game {

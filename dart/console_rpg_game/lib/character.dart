@@ -1,4 +1,4 @@
-class character {
+class Character {
   String name = ''; // 이름
   int hp = 0; // 체력
   int atk = 0; // 공격력

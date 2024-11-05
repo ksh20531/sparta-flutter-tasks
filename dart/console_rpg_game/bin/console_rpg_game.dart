@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:console_rpg_game/character.dart';
 
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
   int? characterHp = 0;
   int? characterAtk = 0;
   int? characterDef = 0;
@@ -27,10 +27,10 @@ void main(List<String> arguments) {
   }
 
   // 캐릭터 이름 입력 받기
-  try {
-    stdout.write("캐릭터의 이름을 입력하세요: ");
-    String characterName = stdin.readLineSync()!;
+  stdout.write("캐릭터의 이름을 입력하세요: ");
+  String characterName = stdin.readLineSync()!;
 
+  try {
     // 한글 및 영어 대소문자 정규식
     RegExp regex = RegExp(r'^[a-zA-Z가-힣]+$');
 
@@ -38,5 +38,31 @@ void main(List<String> arguments) {
     if (!regex.hasMatch(characterName)) throw '한글과 영어만 입력 가능해요';
   } catch (e) {
     print(e);
+  }
+
+  // 파일 쓰기
+  Character character = Character();
+  character.name = characterName;
+
+  // 디렉토리가 없을 경우 생성
+  final path = 'data/results';
+
+  try {
+    final directory = Directory(path);
+    if (!await directory.exists()) {
+      await directory.create(recursive: true);
+    }
+  } catch (e) {
+    print('경로 생성에 실패했습니다.');
+  }
+
+  int time = DateTime.now().microsecondsSinceEpoch;
+  String fileName = '$path/result_$time.txt';
+  final file = File(fileName);
+
+  try {
+    await file.writeAsString(character.name);
+  } catch (e) {
+    print('파일 생성에 실패했습니다.');
   }
 }

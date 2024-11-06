@@ -9,8 +9,19 @@ class Game {
   int monsterKillCount = 0; // 죽인 몬스터 수
 
   /// 게임 시작
-  bool startGame() {
-    return true;
+  void startGame(Character character) {
+    bool isContinue = true;
+    Monster monsterList = getRandomMonster();
+
+    while (isContinue) {
+      stdout.writeln("게임을 시작합니다!");
+      stdout.writeln("${character.name} - 체력:${character.hp}, 공격력:${character.atk}, 방어력:${character.def}\n");
+
+      stdout.write("다음 몬스터와 싸우시겠습니까? (y/n): ");
+      String? isYes = stdin.readLineSync();
+
+      if (isYes != "y" && isYes != "Y") isContinue = false;
+    }
   }
 
   /// 전투 진행

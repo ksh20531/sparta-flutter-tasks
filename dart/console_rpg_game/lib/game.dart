@@ -49,7 +49,17 @@ class Game {
 
     // 모든 몬스터와 전투 진행
     while (monster.isNotEmpty) {
-      Monster newMonster = getRandomMonster(); // 이번 턴 몬스터 소환
+      Monster newMonster = getRandomMonster(); // 새로운 몬스터 소환
+
+      // 현재 내 캐릭터 상태 출력
+      stdout.writeln("-----------현재 내 캐릭터 상태----------");
+      character.showStatus();
+      stdout.writeln("----------------------------------------");
+
+      // 새로운 몬스터 상태 출력
+      stdout.writeln("\n새로운 몬스터가 나타났습니다!");
+      newMonster.showStatus();
+
       isWin = battle(character, newMonster); // 전투 진행
 
       if (isWin == true) {
@@ -59,10 +69,19 @@ class Game {
           break;
         }
 
-        stdout.write("다음 몬스터와 싸우시겠습니까? (y/n): ");
-        String? isYes = stdin.readLineSync();
+        // 다음 경기 진행 여부 결정
+        while (true) {
+          stdout.write("다음 몬스터와 싸우시겠습니까? (y/n): ");
+          String? isYes = stdin.readLineSync()!;
 
-        if (isYes == "n") break;
+          if (isYes.toLowerCase() == "n") {
+            return "${character.name} - 체력: ${character.hp}, 결과: ${isWin ? '승리' : '패배'}, 물리친 몬스터: $monsterKillCount";
+          } else if (isYes.toLowerCase() == "y") {
+            break;
+          } else {
+            stdout.writeln("y 혹은 n만 입력이 가능합니다.");
+          }
+        }
       } else {
         break;
       }
@@ -72,16 +91,11 @@ class Game {
 
   /// 전투 진행
   bool battle(character, monster) {
-    character.showStatus();
-    stdout.writeln("\n새로운 몬스터가 나타났습니다!");
-    monster.showStatus();
-
     while (true) {
       // 캐릭터 턴
       stdout.write("\n${character.name}의 턴\n행동을 선택하세요 (1: 공격, 2: 방어): ");
       String control = stdin.readLineSync()!;
 
-      // 1,2 외의 값에 대한 예외 처리 필요.
       if (control == "1") {
         monster.hp = character.attackMonster(monster);
         stdout.writeln("${character.name}이(가) ${monster.name}에게 ${character.atk}의 데미지를 입혔습니다.");
@@ -95,6 +109,9 @@ class Game {
       } else if (control == "2") {
         character.hp = character.defend();
         stdout.writeln("${character.name}이(가) 방어 태세를 취하여 ${character.def}만큼 체력을 얻었습니다.");
+      } else {
+        stdout.writeln("1 혹은 2만 입력할 수 있습니다. 다시 입력해 주세요.");
+        battle(character, monster); // 1,2외의 문자 입력할 경우 재입력
       }
 
       // 몬스터 턴

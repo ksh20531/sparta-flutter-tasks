@@ -12,7 +12,7 @@ class Monster {
     int remainedHp = character.hp;
 
     if (character.hp >= atk) {
-      remainedHp = character.hp - atk;
+      remainedHp = (atk > character.def) ? character.hp - atk + character.def : character.hp - atk;
     } else {
       remainedHp = 0;
     }

@@ -104,7 +104,11 @@ class Game {
 
   /// 전투 진행
   bool battle(character, monster) {
+    int turn = 0; // 게임 턴
+
     while (true) {
+      turn++; // 턴 증가
+
       // 캐릭터 턴
       stdout.write("\n${character.name}의 턴\n행동을 선택하세요 (1: 공격, 2: 방어): ");
       String control = stdin.readLineSync()!;
@@ -129,6 +133,13 @@ class Game {
 
       // 몬스터 턴
       stdout.writeln("\n${monster.name}의 턴");
+
+      // 매 3턴마다 몬스터 방어력 증가
+      if (turn % 3 == 0) {
+        monster.def += 2;
+        stdout.writeln('${monster.name}의 방어력이 증가했습니다! 현재 방어력 : ${monster.def}');
+      }
+
       character.hp = monster.attackCharacter(character);
       stdout.writeln("${monster.name}이(가) ${character.name}에게 ${monster.atk}의 데미지를 입혔습니다.\n");
 

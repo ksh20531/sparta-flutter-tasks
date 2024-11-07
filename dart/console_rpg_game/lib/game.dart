@@ -10,6 +10,13 @@ class Game {
 
   /// 게임 시작
   String startGame(Character character) {
+    // 30% 확률로 캐릭터에게 보너스 체력 제공
+    int bonus = Random().nextInt(100);
+    if (bonus < 30) {
+      character.hp += 10;
+      stdout.writeln("보너스 체력을 얻었습니다! 현제 체력 : ${character.hp}");
+    }
+
     try {
       // 몬스터 파일 읽어오기
       final monsterFile = File('data/csv/monsters.txt');

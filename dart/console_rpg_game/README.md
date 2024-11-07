@@ -1,2 +1,28 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+## 콘솔 RPG 게임
+
+### 프로젝트 계기
+
+Dart 언어 숙달
+
+### 개발 기간
+
+2024.11.05 ~ 2024.11.07
+
+### 기능
+
+1. 파일로부터 데이터 읽어오기
+
+2. 사용자로부터 캐릭터 이름 입력받기
+
+3. 게임 종료 후 결과를 파일에 저장하기
+
+4. 캐릭터의 체력 증가 기능(도전1)
+
+5. 전투 시 캐릭터의 아이템 사용 기능(도전2)
+
+6. 몬스터의 방어력 증가 기능(도전3)
+
+### 기타
+캐릭터 및 몬스터 정보 파일의 위치는 data/csv/
+
+게임 결과 파일은 result_microseconds의 형태로 data/results에 저장 됨

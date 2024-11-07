@@ -105,12 +105,19 @@ class Game {
   /// 전투 진행
   bool battle(character, monster) {
     int turn = 0; // 게임 턴
+    int invalidItemTurn = 0; // 아이템 효과 종료시킬 턴
 
     while (true) {
       turn++; // 턴 증가
 
+      // 어이템 효과 해제
+      if (turn == invalidItemTurn) {
+        character.atk ~/= 2;
+        stdout.writeln("아이템의 효과가 사라졌습니다. 현재 공격력 : ${character.atk}");
+      }
+
       // 캐릭터 턴
-      stdout.write("\n${character.name}의 턴\n행동을 선택하세요 (1: 공격, 2: 방어): ");
+      stdout.write("\n${character.name}의 턴\n행동을 선택하세요 (1: 공격, 2: 방어, 3:아이템): ");
       String control = stdin.readLineSync()!;
 
       if (control == "1") {
@@ -126,9 +133,19 @@ class Game {
       } else if (control == "2") {
         character.hp = character.defend();
         stdout.writeln("${character.name}이(가) 방어 태세를 취하여 ${character.def}만큼 체력을 얻었습니다.");
+      } else if (control == "3") {
+        // 아이템이 없는 경우 재선택
+        if (character.haveItem == false) {
+          stdout.writeln("사용할 아이템이 없습니다.");
+          battle(character, monster);
+        } else {
+          character.useItem();
+          invalidItemTurn = turn + 2;
+          stdout.writeln('${character.name}의 공격력이 2배 증가했습니다! 다음 공격력 : ${character.atk}');
+        }
       } else {
         stdout.writeln("1 혹은 2만 입력할 수 있습니다. 다시 입력해 주세요.");
-        battle(character, monster); // 1,2외의 문자 입력할 경우 재입력
+        battle(character, monster); // 1,2,3외의 문자 입력할 경우 재입력
       }
 
       // 몬스터 턴

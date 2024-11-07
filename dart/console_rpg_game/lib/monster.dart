@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'package:console_rpg_game/character.dart';
+
 class Monster {
   String name = ''; // 몬스터 이름
   int hp = 0; // 몬스터 체력
@@ -5,12 +8,20 @@ class Monster {
   int def = 0; // 몬스터 방어력
 
   /// 캐릭터 공격
-  void attackCharacter() {
+  int attackCharacter(Character character) {
+    int remainedHp = character.hp;
 
+    if (character.hp >= maxAtk) {
+      remainedHp = character.hp - maxAtk;
+    } else {
+      remainedHp = 0;
+    }
+
+    return remainedHp;
   }
 
   /// 몬스터 상태 출력
   void showStatus() {
-
+    stdout.writeln("$name - 체력: $hp, 공격력: $maxAtk");
   }
 }

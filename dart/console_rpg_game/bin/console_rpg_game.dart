@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:console_rpg_game/character.dart';
+import 'package:console_rpg_game/game.dart';
 
 void main(List<String> arguments) async {
   int? characterHp = 0;
@@ -24,6 +25,7 @@ void main(List<String> arguments) async {
     if (characterDef == null) throw 'Def 초기화 실패';
   } catch (e) {
     print('캐릭터 생성에 실패했습니다 : $e');
+    return;
   }
 
   // 캐릭터 이름 입력 받기
@@ -38,15 +40,32 @@ void main(List<String> arguments) async {
     if (!regex.hasMatch(characterName)) throw '한글과 영어만 입력 가능해요';
   } catch (e) {
     print(e);
+    return;
+  }
+
+  // 캐릭터 객체화
+  Character character = Character();
+  character.name = characterName;
+  character.hp = characterHp;
+  character.atk = characterAtk;
+  character.def = characterDef;
+
+  // 게임 시작
+  Game game = Game();
+  String gameResult = game.startGame(character);
+
+  stdout.write("결과를 저장하시겠습니까? (y/n): ");
+  String? isSave = stdin.readLineSync();
+
+  if (isSave == 'n') {
+    stdout.writeln("결과를 저장하지 않습니다. 게임을 종료합니다.");
+    return;
   }
 
   // 파일 쓰기
-  Character character = Character();
-  character.name = characterName;
-
-  // 디렉토리가 없을 경우 생성
   final path = 'data/results';
 
+  // 디렉토리가 없을 경우 생성
   try {
     final directory = Directory(path);
     if (!await directory.exists()) {
@@ -56,12 +75,15 @@ void main(List<String> arguments) async {
     print('경로 생성에 실패했습니다.');
   }
 
+  // result_(microtime)으로 파일 생성
   int time = DateTime.now().microsecondsSinceEpoch;
   String fileName = '$path/result_$time.txt';
   final file = File(fileName);
 
+  stdout.writeln("결과를 저장했습니다. 게임을 종료합니다.");
+
   try {
-    await file.writeAsString(character.name);
+    await file.writeAsString(gameResult);
   } catch (e) {
     print('파일 생성에 실패했습니다.');
   }

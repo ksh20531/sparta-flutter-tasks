@@ -9,26 +9,7 @@ class Game {
   int monsterKillCount = 0; // 죽인 몬스터 수
 
   /// 게임 시작
-  void startGame(Character character) {
-    bool isContinue = true;
-    Monster monsterList = getRandomMonster();
-
-    while (isContinue) {
-      stdout.writeln("게임을 시작합니다!");
-      stdout.writeln("${character.name} - 체력:${character.hp}, 공격력:${character.atk}, 방어력:${character.def}\n");
-
-      stdout.write("다음 몬스터와 싸우시겠습니까? (y/n): ");
-      String? isYes = stdin.readLineSync();
-
-      if (isYes != "y" && isYes != "Y") isContinue = false;
-    }
-  }
-
-  /// 전투 진행
-  void battle() {}
-
-  /// 랜덤 몬스터 소환
-  Monster getRandomMonster() {
+  String startGame(Character character) {
     try {
       // 몬스터 파일 읽어오기
       final monsterFile = File('data/csv/monsters.txt');
@@ -59,12 +40,90 @@ class Game {
         this.monster.add(mon);
       }
     } catch (e) {
-      print('몬스터를 소환하는 중 오류가 생겼습니다 : $e');
+      print('몬스터를 생성하던 중 오류가 생겼습니다 : $e');
     }
 
-    // 몬스터 랜덤 소환
+    stdout.writeln("게임을 시작합니다!");
+
+    bool isWin = false; // 전투 결과
+
+    // 모든 몬스터와 전투 진행
+    while (monster.isNotEmpty) {
+      Monster newMonster = getRandomMonster(); // 이번 턴 몬스터 소환
+      isWin = battle(character, newMonster); // 전투 진행
+
+      if (isWin == true) {
+        // 몬스터가 없을 경우 종료
+        if (monster.isEmpty) {
+          stdout.writeln("축하합니다! 모든 몬스터를 물리쳤습니다.");
+          break;
+        }
+
+        stdout.write("다음 몬스터와 싸우시겠습니까? (y/n): ");
+        String? isYes = stdin.readLineSync();
+
+        if (isYes == "n") break;
+      } else {
+        break;
+      }
+    }
+    return "${character.name} - 체력: ${character.hp}, 결과: ${isWin ? '승리' : '패배'}, 물리친 몬스터: $monsterKillCount";
+  }
+
+  /// 전투 진행
+  bool battle(character, monster) {
+    character.showStatus();
+    stdout.writeln("\n새로운 몬스터가 나타났습니다!");
+    monster.showStatus();
+
+    while (true) {
+      // 캐릭터 턴
+      stdout.write("\n${character.name}의 턴\n행동을 선택하세요 (1: 공격, 2: 방어): ");
+      String control = stdin.readLineSync()!;
+
+      // 1,2 외의 값에 대한 예외 처리 필요.
+      if (control == "1") {
+        monster.hp = character.attackMonster(monster);
+        stdout.writeln("${character.name}이(가) ${monster.name}에게 ${character.atk}의 데미지를 입혔습니다.");
+
+        // 몬스터의 체력이 0 이하일 경우 승리
+        if (monster.hp <= 0) {
+          stdout.writeln("${monster.name}을(를) 물리쳤습니다!\n");
+          monsterKillCount++; // 킬 카운트 증가
+          break; // 전투 종료
+        }
+      } else if (control == "2") {
+        character.hp = character.defend();
+        stdout.writeln("${character.name}이(가) 방어 태세를 취하여 ${character.def}만큼 체력을 얻었습니다.");
+      }
+
+      // 몬스터 턴
+      stdout.writeln("\n${monster.name}의 턴");
+      character.hp = monster.attackCharacter(character);
+      stdout.writeln("${monster.name}이(가) ${character.name}에게 ${monster.maxAtk}의 데미지를 입혔습니다.\n");
+
+      // 캐릭터와 몬스터 상태 출력
+      character.showStatus();
+      monster.showStatus();
+
+      // 캐릭터의 체력이 0 이하일 경우 패배
+      if (character.hp <= 0) {
+        stdout.writeln("${character.name}이(가) 패배했습니다.");
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /// 랜덤 몬스터 소환
+  Monster getRandomMonster() {
+    // 랜덤 몬스터 생성
     final random = Random();
-    Monster newMonster = monster[random.nextInt(monster.length)];
+    int idx = random.nextInt(monster.length);
+    Monster newMonster = monster[idx];
+
+    // // 몬스터 리스트에서 몬스터 삭제
+    monster.removeAt(idx);
 
     return newMonster;
   }

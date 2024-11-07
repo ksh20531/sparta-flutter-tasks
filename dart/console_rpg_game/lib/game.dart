@@ -45,16 +45,17 @@ class Game {
 
     stdout.writeln("게임을 시작합니다!");
 
+    bool isContinue = true; // 다음 전투 여부
     bool isWin = false; // 전투 결과
 
-    // 모든 몬스터와 전투 진행
-    while (monster.isNotEmpty) {
+    // 몬스터 소환 및 전투 시작
+    while (isContinue) {
       Monster newMonster = getRandomMonster(); // 새로운 몬스터 소환
 
       // 현재 내 캐릭터 상태 출력
-      stdout.writeln("-----------현재 내 캐릭터 상태----------");
+      stdout.writeln("----------현재 내 캐릭터 상태----------");
       character.showStatus();
-      stdout.writeln("----------------------------------------");
+      stdout.writeln("---------------------------------------");
 
       // 새로운 몬스터 상태 출력
       stdout.writeln("\n새로운 몬스터가 나타났습니다!");
@@ -66,6 +67,7 @@ class Game {
         // 몬스터가 없을 경우 종료
         if (monster.isEmpty) {
           stdout.writeln("축하합니다! 모든 몬스터를 물리쳤습니다.");
+          isContinue = false; // 전투 중지
           break;
         }
 
@@ -75,9 +77,9 @@ class Game {
           String? isYes = stdin.readLineSync()!;
 
           if (isYes.toLowerCase() == "n") {
-            return "${character.name} - 체력: ${character.hp}, 결과: ${isWin ? '승리' : '패배'}, 물리친 몬스터: $monsterKillCount";
+            isContinue = false; // 전투 중지
           } else if (isYes.toLowerCase() == "y") {
-            break;
+            break; // 다음 전투 진행
           } else {
             stdout.writeln("y 혹은 n만 입력이 가능합니다.");
           }

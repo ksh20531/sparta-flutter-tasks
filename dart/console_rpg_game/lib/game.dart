@@ -32,10 +32,14 @@ class Game {
         if (hp == null) throw '체력 초기화 실패';
         if (atk == null) throw '공격력 초기화 실패';
 
+        // 몬스터의 공격력 설정
+        int monsterAtk = Random().nextInt(atk + 1); // 몬스터 공격력 랜덤하게 설정
+        monsterAtk = (monsterAtk < character.def) ? character.def : monsterAtk; // 몬스터의 공격력이 캐릭터의 방어력 보다 낮을 경우 캐릭터 방어력과 같게 설정
+
         Monster mon = Monster();
         mon.name = name;
         mon.hp = hp;
-        mon.maxAtk = atk;
+        mon.atk = monsterAtk;
 
         this.monster.add(mon);
       }
@@ -119,7 +123,7 @@ class Game {
       // 몬스터 턴
       stdout.writeln("\n${monster.name}의 턴");
       character.hp = monster.attackCharacter(character);
-      stdout.writeln("${monster.name}이(가) ${character.name}에게 ${monster.maxAtk}의 데미지를 입혔습니다.\n");
+      stdout.writeln("${monster.name}이(가) ${character.name}에게 ${monster.atk}의 데미지를 입혔습니다.\n");
 
       // 캐릭터와 몬스터 상태 출력
       character.showStatus();

@@ -25,7 +25,12 @@ class StationListPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: stationList.length,
         itemBuilder: (BuildContext context, int idx) {
-          return StationName('${stationList[idx]}');
+          return GestureDetector(
+            onTap: () {
+              Navigator.pop(context, stationList[idx]);
+            },
+            child: StationName('${stationList[idx]}'),
+          );
         },
       ),
     );

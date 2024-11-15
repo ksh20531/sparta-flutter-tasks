@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/pages/seat/seat_page.dart';
+import 'package:flutter_train_app/pages/station/station_list_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String startStation = '출발역';
+  String endStation = '도착역';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,60 +26,8 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '출발역',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        Text(
-                          '선택',
-                          style: TextStyle(fontSize: 40),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      width: 2,
-                      height: 50,
-                      color: Colors.black,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '도착역',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                        ),
-                        Text(
-                          '선택',
-                          style: TextStyle(fontSize: 40),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+              infoArea(),
+              SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -82,12 +40,20 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: Text(
-                    '좌석 선택',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SeatPage()),
+                      );
+                    },
+                    child: Text(
+                      '좌석 선택',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -95,6 +61,65 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container infoArea() {
+    return Container(
+      width: double.infinity,
+      height: 200,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          stationArea(isStartStation: true),
+          Container(
+            width: 2,
+            height: 50,
+            color: Colors.black,
+          ),
+          stationArea(isStartStation: false),
+        ],
+      ),
+    );
+  }
+
+  GestureDetector stationArea({required bool isStartStation}) {
+    return GestureDetector(
+      onTap: () async {
+        String select = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => StationListPage()),
+        );
+
+        setState(() {
+          if (isStartStation) {
+            startStation = select;
+          } else {
+            endStation = select;
+          }
+        });
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            isStartStation ? '출발역' : '도착역',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            ),
+          ),
+          Text(
+            isStartStation ? startStation : endStation,
+            style: TextStyle(fontSize: 40),
+          ),
+        ],
       ),
     );
   }

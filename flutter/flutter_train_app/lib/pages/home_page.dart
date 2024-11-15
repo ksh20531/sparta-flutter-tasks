@@ -42,10 +42,15 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SeatPage()),
-                      );
+                      if (startStation != '출발역' && endStation != '도착역') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SeatPage(),
+                              settings: RouteSettings(
+                                  arguments: [startStation, endStation])),
+                        );
+                      }
                     },
                     child: Text(
                       '좌석 선택',

@@ -18,6 +18,9 @@ class StationListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final station = ModalRoute.of(context)?.settings.arguments;
+    stationList.remove(station);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('출발역'),

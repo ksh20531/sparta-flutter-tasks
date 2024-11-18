@@ -103,7 +103,10 @@ class _HomePageState extends State<HomePage> {
       onTap: () async {
         String select = await Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => StationListPage()),
+          MaterialPageRoute(
+              builder: (context) => StationListPage(),
+              settings: RouteSettings(
+                  arguments: isStartStation ? endStation : startStation)),
         );
 
         setState(() {

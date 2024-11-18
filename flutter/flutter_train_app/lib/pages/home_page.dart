@@ -18,19 +18,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('기차 예매'),
+        title: const Text('기차 예매'),
       ),
       body: Container(
         color: Colors.grey[200],
         width: double.infinity,
         height: double.infinity,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               infoArea(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       '좌석 선택',
                       style: TextStyle(
                         fontSize: 18,
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Text(
             isStartStation ? startStationChar : endStationChar,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.grey,
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Text(
             isStartStation ? startStation : endStation,
-            style: TextStyle(fontSize: 40),
+            style: const TextStyle(fontSize: 40),
           ),
         ],
       ),

@@ -23,7 +23,7 @@ class StationListPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('출발역'),
+        title: const Text('출발역'),
       ),
       body: ListView.builder(
         itemCount: stationList.length,
@@ -32,7 +32,7 @@ class StationListPage extends StatelessWidget {
             onTap: () {
               Navigator.pop(context, stationList[idx]);
             },
-            child: StationName('${stationList[idx]}'),
+            child: StationName(stationList[idx]),
           );
         },
       ),

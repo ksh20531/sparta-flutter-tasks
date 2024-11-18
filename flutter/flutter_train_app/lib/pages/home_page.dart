@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_train_app/pages/seat/seat_page.dart';
 import 'package:flutter_train_app/pages/station/station_list_page.dart';
 
+const startStationChar = '출발역';
+const endStationChar = '도착역';
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  String startStation = '출발역';
-  String endStation = '도착역';
+  String startStation = startStationChar;
+  String endStation = endStationChar;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      if (startStation != '출발역' && endStation != '도착역') {
+                      if (startStation != startStationChar &&
+                          endStation != endStationChar &&
+                          startStation != endStation) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -113,7 +118,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            isStartStation ? '출발역' : '도착역',
+            isStartStation ? startStationChar : endStationChar,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,

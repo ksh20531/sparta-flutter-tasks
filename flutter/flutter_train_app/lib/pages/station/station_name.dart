@@ -10,11 +10,11 @@ class StationName extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           height: 50,
           child: Text(
             stationName,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),

@@ -70,6 +70,7 @@ class _SeatPageStatus extends State<SeatPage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
+                    SizedBox(width: 4),
                     Text('선택됨'),
                     SizedBox(width: 20),
                     Container(
@@ -80,6 +81,7 @@ class _SeatPageStatus extends State<SeatPage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
+                    SizedBox(width: 4),
                     Text('선택안됨'),
                   ],
                 ),

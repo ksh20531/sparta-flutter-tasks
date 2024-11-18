@@ -57,41 +57,47 @@ class _SeatPageStatus extends State<SeatPage> {
                 ),
               ),
               const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(8),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
-                  ),
-                  Text('선택됨'),
-                  SizedBox(width: 30),
-                  Container(
-                    width: 20,
-                    height: 20,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300]!,
-                      borderRadius: BorderRadius.circular(8),
+                    Text('선택됨'),
+                    SizedBox(width: 20),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300]!,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
-                  ),
-                  Text('선택안됨'),
-                ],
+                    Text('선택안됨'),
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(seatHeader.length, (i) {
-                  return Container(
-                    margin: EdgeInsets.only(right: 4),
-                    alignment: Alignment.bottomCenter,
-                    width: 50,
-                    height: 50,
-                    child: Text(seatHeader[i]),
-                  );
-                }),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(seatHeader.length, (i) {
+                    return Container(
+                      margin: EdgeInsets.only(right: 4),
+                      alignment: Alignment.bottomCenter,
+                      width: 50,
+                      height: 50,
+                      child: Text(seatHeader[i]),
+                    );
+                  }),
+                ),
               ),
               const SizedBox(height: 8),
               Expanded(

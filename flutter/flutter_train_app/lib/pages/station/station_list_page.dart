@@ -18,12 +18,14 @@ class StationListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final station = ModalRoute.of(context)?.settings.arguments;
-    stationList.remove(station);
+    final arguments = ModalRoute.of(context)?.settings.arguments as List;
+    bool stationType = arguments[0];
+
+    stationList.remove(arguments[1]);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('출발역'),
+        title: Text(stationType ? '출발역' : '도착역'),
       ),
       body: ListView.builder(
         itemCount: stationList.length,

@@ -105,8 +105,10 @@ class _HomePageState extends State<HomePage> {
           context,
           MaterialPageRoute(
               builder: (context) => StationListPage(),
-              settings: RouteSettings(
-                  arguments: isStartStation ? endStation : startStation)),
+              settings: RouteSettings(arguments: [
+                isStartStation,
+                isStartStation ? endStation : startStation,
+              ])),
         );
 
         setState(() {

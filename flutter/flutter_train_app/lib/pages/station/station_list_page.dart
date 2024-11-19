@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train_app/pages/station/station_name.dart';
 
 class StationListPage extends StatelessWidget {
   List<String> stationList = [
@@ -34,10 +33,39 @@ class StationListPage extends StatelessWidget {
             onTap: () {
               Navigator.pop(context, stationList[idx]);
             },
-            child: StationName(stationList[idx]),
+            child: list(idx),
           );
         },
       ),
+    );
+  }
+
+  Column list(int idx) {
+    return Column(
+      children: [
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          height: 50,
+          child: Text(
+            stationList[idx],
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.grey[300]!,
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

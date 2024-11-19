@@ -115,11 +115,7 @@ class _HomePageState extends State<HomePage> {
         );
 
         setState(() {
-          if (isStartStation) {
-            startStation = select;
-          } else {
-            endStation = select;
-          }
+          isStartStation ? startStation = select : endStation = select;
         });
       },
       child: Column(

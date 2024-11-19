@@ -4,6 +4,7 @@ import 'package:flutter_train_app/pages/station/station_list_page.dart';
 
 const startStationChar = '출발역';
 const endStationChar = '도착역';
+bool? isDarkTheme;
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,12 +17,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('기차 예매'),
       ),
       body: Container(
-        color: Colors.grey[200],
+        color: isDarkTheme! ? Colors.black : Colors.grey[200],
         width: double.infinity,
         height: double.infinity,
         child: Padding(
@@ -80,7 +83,7 @@ class _HomePageState extends State<HomePage> {
       width: double.infinity,
       height: 200,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDarkTheme! ? Colors.grey[800] : Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -90,7 +93,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             width: 2,
             height: 50,
-            color: Colors.black,
+            color: isDarkTheme! ? Colors.grey : Colors.black,
           ),
           stationArea(isStartStation: false),
         ],

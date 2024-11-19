@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 const rowCnt = 20;
 const List<String> seatColHeader = ['A', 'B', ' ', 'C', 'D'];
+bool? isDarkTheme;
 
 class SeatPage extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _SeatPageStatus extends State<SeatPage> {
 
   @override
   Widget build(BuildContext context) {
+    isDarkTheme = Theme.of(context).brightness == Brightness.dark;
     final arguments =
         ModalRoute.of(context)?.settings.arguments as List<String>;
     String? startStation = arguments[0];
@@ -90,18 +92,24 @@ class _SeatPageStatus extends State<SeatPage> {
             ),
           ),
           SizedBox(width: 4),
-          Text('선택됨'),
+          Text(
+            '선택됨',
+            style: TextStyle(color: isDarkTheme! ? Colors.white : null),
+          ),
           SizedBox(width: 20),
           Container(
             width: 20,
             height: 20,
             decoration: BoxDecoration(
-              color: Colors.grey[300]!,
+              color: isDarkTheme! ? Colors.grey[800] : Colors.grey[300]!,
               borderRadius: BorderRadius.circular(8),
             ),
           ),
           SizedBox(width: 4),
-          Text('선택안됨'),
+          Text(
+            '선택안됨',
+            style: TextStyle(color: isDarkTheme! ? Colors.white : null),
+          ),
         ],
       ),
     );
@@ -119,7 +127,10 @@ class _SeatPageStatus extends State<SeatPage> {
             alignment: Alignment.bottomCenter,
             width: 50,
             height: 50,
-            child: Text(seatColHeader[i]),
+            child: Text(
+              seatColHeader[i],
+              style: TextStyle(color: isDarkTheme! ? Colors.white : null),
+            ),
           );
         }),
       ),
@@ -172,9 +183,16 @@ class _SeatPageStatus extends State<SeatPage> {
               ? Colors.purple
               : (idx % 5 == 2)
                   ? null
-                  : Colors.grey[300]!,
+                  : isDarkTheme!
+                      ? Colors.grey[800]
+                      : Colors.grey[300]!,
         ),
-        child: (idx % 5 == 2) ? Text('$rowNum') : null,
+        child: (idx % 5 == 2)
+            ? Text(
+                '$rowNum',
+                style: TextStyle(color: isDarkTheme! ? Colors.white : null),
+              )
+            : null,
       ),
     );
   }

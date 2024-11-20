@@ -51,24 +51,39 @@ class _SeatPageStatus extends State<SeatPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            startStation,
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.purple,
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                startStation,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.purple,
+                ),
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
-          Icon(
-            Icons.arrow_circle_right_outlined,
-            size: 30,
+          SizedBox(
+            width: 50,
+            child: Icon(
+              Icons.arrow_circle_right_outlined,
+              size: 30,
+            ),
           ),
-          Text(
-            endStation,
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.purple,
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                endStation,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.purple,
+                ),
+                textAlign: TextAlign.right,
+              ),
             ),
           ),
         ],

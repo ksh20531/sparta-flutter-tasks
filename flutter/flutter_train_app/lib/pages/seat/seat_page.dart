@@ -98,32 +98,46 @@ class _SeatPageStatus extends State<SeatPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              color: Colors.purple,
-              borderRadius: BorderRadius.circular(8),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                SizedBox(width: 4),
+                Text(
+                  '선택됨',
+                  style: TextStyle(color: isDarkTheme! ? Colors.white : null),
+                ),
+              ],
             ),
-          ),
-          SizedBox(width: 4),
-          Text(
-            '선택됨',
-            style: TextStyle(color: isDarkTheme! ? Colors.white : null),
           ),
           SizedBox(width: 20),
-          Container(
-            width: 20,
-            height: 20,
-            decoration: BoxDecoration(
-              color: isDarkTheme! ? Colors.grey[800] : Colors.grey[300]!,
-              borderRadius: BorderRadius.circular(8),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: 20,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    color: isDarkTheme! ? Colors.grey[800] : Colors.grey[300]!,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                SizedBox(width: 4),
+                Text(
+                  '선택안됨',
+                  style: TextStyle(color: isDarkTheme! ? Colors.white : null),
+                ),
+              ],
             ),
-          ),
-          SizedBox(width: 4),
-          Text(
-            '선택안됨',
-            style: TextStyle(color: isDarkTheme! ? Colors.white : null),
           ),
         ],
       ),

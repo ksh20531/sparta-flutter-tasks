@@ -1,16 +1,17 @@
-# flutter_train_app
+## 기차 예매 서비스
 
-A new Flutter project.
+### 프로젝트 계기
 
-## Getting Started
+Flutter 언어 숙달
 
-This project is a starting point for a Flutter application.
+### 개발 기간
 
-A few resources to get you started if this is your first Flutter project:
+2024.11.13 ~ 2024.11.20
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 기능
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. 출발역 도착역 선택
+
+2. 좌석 선택
+
+3. 다크 테마 적용

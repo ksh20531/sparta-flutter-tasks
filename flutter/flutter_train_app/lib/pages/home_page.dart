@@ -101,39 +101,41 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  GestureDetector stationArea({required bool isStartStation}) {
-    return GestureDetector(
-      onTap: () async {
-        String select = await Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => StationListPage(),
-              settings: RouteSettings(arguments: [
-                isStartStation,
-                isStartStation ? endStation : startStation,
-              ])),
-        );
+  Expanded stationArea({required bool isStartStation}) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () async {
+          String select = await Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => StationListPage(),
+                settings: RouteSettings(arguments: [
+                  isStartStation,
+                  isStartStation ? endStation : startStation,
+                ])),
+          );
 
-        setState(() {
-          isStartStation ? startStation = select : endStation = select;
-        });
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            isStartStation ? startStationChar : endStationChar,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey,
+          setState(() {
+            isStartStation ? startStation = select : endStation = select;
+          });
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              isStartStation ? startStationChar : endStationChar,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+              ),
             ),
-          ),
-          Text(
-            isStartStation ? startStation : endStation,
-            style: const TextStyle(fontSize: 40),
-          ),
-        ],
+            Text(
+              isStartStation ? startStation : endStation,
+              style: const TextStyle(fontSize: 40),
+            ),
+          ],
+        ),
       ),
     );
   }

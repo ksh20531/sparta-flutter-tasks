@@ -173,7 +173,7 @@ class _SeatPageStatus extends State<SeatPage> {
           padding: EdgeInsets.symmetric(horizontal: 40),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
-            crossAxisSpacing: 8,
+            crossAxisSpacing: 4,
             mainAxisSpacing: 8,
           ),
           itemCount: rowCnt * seatColHeader.length,

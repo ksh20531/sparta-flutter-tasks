@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Expanded stationArea({required bool isStartStation}) {
+  Widget stationArea({required bool isStartStation}) {
     return Expanded(
       child: GestureDetector(
         onTap: () async {
@@ -129,10 +129,18 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold,
                 color: Colors.grey,
               ),
+              textAlign: TextAlign.start,
             ),
-            Text(
-              isStartStation ? startStation : endStation,
-              style: const TextStyle(fontSize: 40),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              height: 50,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  isStartStation ? startStation : endStation,
+                  style: const TextStyle(fontSize: 40),
+                ),
+              ),
             ),
           ],
         ),

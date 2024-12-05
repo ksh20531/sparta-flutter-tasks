@@ -6,7 +6,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: TextField(),
+        ),
       ),
       body: GestureDetector(
         onTap: () {

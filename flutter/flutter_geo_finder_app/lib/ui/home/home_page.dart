@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_geo_finder_app/home/widgets/home_page_item.dart';
+import 'package:flutter_geo_finder_app/ui/home/widgets/home_page_item.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -8,7 +8,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: TextField(),
+          child: TextField(
+            onSubmitted: (value) {
+              print(value);
+            },
+          ),
         ),
       ),
       body: GestureDetector(

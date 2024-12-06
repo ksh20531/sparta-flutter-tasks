@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_geo_finder_app/ui/detail/detail_page.dart';
 
 class HomePageItem extends StatelessWidget {
-  const HomePageItem({super.key});
+  String title;
+  String link;
+  String category;
+  String roadAddress;
+
+  HomePageItem({
+    super.key,
+    required this.title,
+    required this.link,
+    required this.category,
+    required this.roadAddress,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +34,13 @@ class HomePageItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('삼성1동 주민센터',
+              Text(title,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               const SizedBox(height: 2),
-              Text('공공,사회기관>행적복지센터',
+              Text(category,
                   style: TextStyle(fontSize: 16, color: Colors.grey[800])),
               const SizedBox(height: 2),
-              Text('서울특별시 강남구 봉은사로 616 삼성1동 주민센터',
+              Text(roadAddress,
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]))
             ],
           ),

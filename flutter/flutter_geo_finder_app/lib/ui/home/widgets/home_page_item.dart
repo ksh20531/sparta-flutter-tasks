@@ -25,8 +25,8 @@ class HomePageItem extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DetailPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DetailPage(link)));
         },
         child: Container(
           padding: const EdgeInsets.all(20),

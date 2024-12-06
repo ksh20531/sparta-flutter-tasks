@@ -5,14 +5,16 @@ import 'package:http/http.dart';
 
 class BookRepository {
   Future<List<Book>> searchBooks(String query) async {
+    final String url = 'https://openapi.naver.com/v1/search/book'
+        '.json?query=';
     final client = Client();
     final response = await client.get(
-        Uri.parse('https://openapi.naver.com/v1/search/book'
-            '.json?query=$query'),
-        headers: {
-          'X-Naver-Client-Id': 'iQhVhW_A3TWNdZXYq7hT',
-          'X-Naver-Client-Secret': 'WNNtbO0Sr2',
-        });
+      Uri.parse('$url$query'),
+      headers: {
+        'X-Naver-Client-Id': 'iQhVhW_A3TWNdZXYq7hT',
+        'X-Naver-Client-Secret': 'WNNtbO0Sr2',
+      },
+    );
 
     if (response.statusCode == 200) {
       Map<String, dynamic> map = jsonDecode(response.body);

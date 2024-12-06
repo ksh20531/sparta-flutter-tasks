@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_geo_finder_app/ui/home/widgets/home_page_item.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +26,10 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                 padding:
-                    EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 0),
+                    const EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 0),
                 itemCount: 3,
-                separatorBuilder: (context, index) => SizedBox(height: 20),
-                itemBuilder: (content, index) => HomePageItem(),
+                separatorBuilder: (context, index) => const SizedBox(height: 20),
+                itemBuilder: (content, index) => const HomePageItem(),
               ),
             ),
           ],

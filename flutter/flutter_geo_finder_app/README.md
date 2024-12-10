@@ -1,16 +1,23 @@
-# flutter_geo_finder_app
+## 지역 검색 앱
 
-A new Flutter project.
+### 프로젝트 계기
 
-## Getting Started
+MVVM 패턴 숙달 및 OPEN API 활용
 
-This project is a starting point for a Flutter application.
+### 개발 기간
 
-A few resources to get you started if this is your first Flutter project:
+2024.12.05 ~ 2024.12.10
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 기능
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Naver 검색 OPEN API를 사용하여 지역 검색
+
+2. WebView로 링크 출력
+
+3. 기기의 GPS 값 획득
+
+4. Vworld OPEN API를 사용하여 획득한 GPS 값으로 지역 검색
+
+### 기타
+
+-

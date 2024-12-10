@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class DetailPage extends StatelessWidget {
-  String link;
+  final String link;
 
   DetailPage(this.link);
 
@@ -10,16 +10,19 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: InAppWebView(
-        initialUrlRequest: URLRequest(url: WebUri(link)),
-        initialSettings: InAppWebViewSettings(
-          javaScriptEnabled: true, // JavaScript 활성화
-          domStorageEnabled: true, // DOM 스토리지 활성화
-          mediaPlaybackRequiresUserGesture: false, // 미디어 재생 허용
-          userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537'
-              '.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
-        ),
-      ),
+      body: link.isNotEmpty
+          ? InAppWebView(
+              initialUrlRequest: URLRequest(url: WebUri(link)),
+              initialSettings: InAppWebViewSettings(
+                javaScriptEnabled: true, // JavaScript 활성화
+                domStorageEnabled: true, // DOM 스토리지 활성화
+                mediaPlaybackRequiresUserGesture: false, // 미디어 재생 허용
+                userAgent:
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537'
+                    '.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+              ),
+            )
+          : Center(child: Text("연결할 링크가 없어요")),
     );
   }
 }

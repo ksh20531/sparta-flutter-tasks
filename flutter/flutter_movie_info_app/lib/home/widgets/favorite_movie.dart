@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_info_app/detail/detail_page.dart';
 
 class FavoriteMovie extends StatelessWidget {
   const FavoriteMovie({super.key});
@@ -16,11 +18,20 @@ class FavoriteMovie extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            'assets/images/ToyStory.jpg',
-            fit: BoxFit.fill,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (context) => DetailPage()));
+          },
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Hero(
+              tag: 'test',
+              child: Image.asset(
+                'assets/images/ToyStory.jpg',
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
         )
       ],

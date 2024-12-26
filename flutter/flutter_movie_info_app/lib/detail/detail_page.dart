@@ -13,7 +13,9 @@ class DetailPage extends StatelessWidget {
         children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset('assets/images/ToyStory.jpg')),
+              child: Hero(
+                  tag: 'test2',
+                  child: Image.asset('assets/images/ToyStory.jpg'))),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(

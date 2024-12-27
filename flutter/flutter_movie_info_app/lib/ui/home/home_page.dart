@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_info_app/home/widgets/favorite_movie.dart';
-import 'package:flutter_movie_info_app/home/widgets/now_on_air.dart';
-import 'package:flutter_movie_info_app/home/widgets/popular.dart';
-import 'package:flutter_movie_info_app/home/widgets/rating.dart';
-import 'package:flutter_movie_info_app/home/widgets/upcoming.dart';
+import 'package:flutter_movie_info_app/ui/home/widgets/favorite_movie.dart';
+import 'package:flutter_movie_info_app/ui/home/widgets/now_on_air.dart';
+import 'package:flutter_movie_info_app/ui/home/widgets/popular.dart';
+import 'package:flutter_movie_info_app/ui/home/widgets/rating.dart';
+import 'package:flutter_movie_info_app/ui/home/widgets/upcoming.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 16),
             Rating(),
             SizedBox(height: 16),
-            Upcoming()
+            Upcoming(),
           ],
         ),
       ),

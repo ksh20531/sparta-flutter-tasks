@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_info_app/detail/detail_page.dart';
+import 'package:flutter_movie_info_app/ui/detail/detail_page.dart';
 
 class NowOnAir extends StatelessWidget {
   const NowOnAir({super.key});

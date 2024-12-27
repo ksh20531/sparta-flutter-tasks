@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_info_app/detail/widgets/info_bottom.dart';
-import 'package:flutter_movie_info_app/detail/widgets/info_category.dart';
-import 'package:flutter_movie_info_app/detail/widgets/info_header.dart';
+import 'package:flutter_movie_info_app/ui/detail/widgets/info_bottom.dart';
+import 'package:flutter_movie_info_app/ui/detail/widgets/info_category.dart';
+import 'package:flutter_movie_info_app/ui/detail/widgets/info_header.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key});

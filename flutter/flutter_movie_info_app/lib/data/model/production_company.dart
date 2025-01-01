@@ -1,8 +1,8 @@
 class ProductionCompany {
-  int id;
-  String logoPath;
-  String name;
-  String originCountry;
+  int? id;
+  String? logoPath;
+  String? name;
+  String? originCountry;
 
   ProductionCompany({
     required this.id,
@@ -13,9 +13,9 @@ class ProductionCompany {
 
   ProductionCompany.fromJson(Map<String, dynamic> map)
       : this(
-          id: map['id'],
-          logoPath: map['logo_path'],
-          name: map['name'],
-          originCountry: map['origin_country'],
+          id: map['id'] as int?,
+          logoPath: map['logo_path'] as String?,
+          name: map['name'] as String?,
+          originCountry: map['origin_country'] as String?,
         );
 }

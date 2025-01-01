@@ -57,6 +57,6 @@ class Movie {
               : null,
           revenue: map['revenue'],
           voteAverage: map['vote_average']?.toDouble(),
-          voteCount: map['voteCount'],
+          voteCount: map['vote_count'],
         );
 }

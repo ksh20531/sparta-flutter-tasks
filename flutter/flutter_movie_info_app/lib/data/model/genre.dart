@@ -1,15 +1,15 @@
 class Genre {
-  int id;
-  String name;
+  int? id;
+  String? name;
 
   Genre({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
   Genre.fromJson(Map<String, dynamic> map)
       : this(
-          id: map['id'],
-          name: map['name'],
+          id: map['id'] as int?,
+          name: map['name'] as String?,
         );
 }

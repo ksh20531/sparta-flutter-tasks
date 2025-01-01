@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_info_app/data/model/movie.dart';
+import 'package:intl/intl.dart';
 
 class InfoHeader extends StatelessWidget {
-  const InfoHeader({super.key});
+  final Movie? movie;
+  const InfoHeader({super.key, this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -14,25 +17,25 @@ class InfoHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Toy Story',
+                '${movie!.originalTitle}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                '2024.11.27',
+                DateFormat('yyyy-MM-dd').format(movie!.releaseDate!),
                 style: TextStyle(color: Colors.grey, fontSize: 16),
               ),
             ],
           ),
           SizedBox(height: 8),
           Text(
-            '부제',
+            '${movie!.tagline}',
             style: TextStyle(color: Colors.grey, fontSize: 16),
           ),
           Text(
-            '100분',
+            '${movie!.runtime}분',
             style: TextStyle(color: Colors.grey, fontSize: 16),
           ),
         ],

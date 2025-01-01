@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_info_app/data/model/movie.dart';
 
 class InfoBottom extends StatelessWidget {
-  const InfoBottom({super.key});
+  final Movie? movie;
+  const InfoBottom({super.key, this.movie});
 
   @override
   Widget build(BuildContext context) {
+    List<String> infoList = [
+      '${movie!.voteAverage}\n평점',
+      '${movie!.voteCount}\n평점투표수',
+      '${movie!.popularity}\n인기점수',
+      '\$${movie!.budget}\n예산',
+      '\$${movie!.revenue}\n수익',
+    ];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -31,7 +41,7 @@ class InfoBottom extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  '6.934\n평점',
+                  infoList[index],
                   textAlign: TextAlign.center,
                 ),
               );
@@ -39,7 +49,7 @@ class InfoBottom extends StatelessWidget {
             separatorBuilder: (context, index) {
               return SizedBox(width: 8);
             },
-            itemCount: 5,
+            itemCount: infoList.length,
           ),
         ),
         SizedBox(height: 20),
@@ -49,15 +59,20 @@ class InfoBottom extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Container(
-                width: 160,
                 height: 80,
                 color: Colors.white,
+                child: movie!.productionCompanies?[index].logoPath != null
+                    ? Image.network(
+                        'https://www.themoviedb.org/t/p/w500/${movie!.productionCompanies?[index].logoPath}',
+                        fit: BoxFit.fitHeight,
+                      )
+                    : SizedBox.shrink(),
               );
             },
             separatorBuilder: (context, index) {
               return SizedBox(width: 8);
             },
-            itemCount: 5,
+            itemCount: movie!.productionCompanies!.length,
           ),
         ),
       ],

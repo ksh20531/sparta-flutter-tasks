@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_info_app/data/model/movie.dart';
 
 class InfoCategory extends StatelessWidget {
-  const InfoCategory({super.key});
+  final Movie? movie;
+  const InfoCategory({super.key, this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class InfoCategory extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50),
               ),
               child: Text(
-                'Animation',
+                '${movie!.genres![index].name}',
                 style: TextStyle(color: Colors.blue),
               ),
             );
@@ -30,7 +32,7 @@ class InfoCategory extends StatelessWidget {
           separatorBuilder: (context, index) {
             return const SizedBox(width: 12);
           },
-          itemCount: 6),
+          itemCount: movie!.genres!.length),
     );
   }
 }

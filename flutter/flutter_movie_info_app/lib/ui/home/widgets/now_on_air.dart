@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_info_app/ui/detail/detail_page.dart';
+import 'package:flutter_movie_info_app/ui/home/home_view_model.dart';
 
 class NowOnAir extends StatelessWidget {
-  const NowOnAir({super.key});
+  final HomeViewState movieList;
+  const NowOnAir({super.key, required this.movieList});
 
   @override
   Widget build(BuildContext context) {
+    final movie = movieList.nowPlaying;
+    const String tagName = 'onAir';
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,23 +23,29 @@ class NowOnAir extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Container(
+        SizedBox(
           height: 180,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: 20,
+            itemCount: (movie.length < 20) ? movie.length : 20,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      CupertinoPageRoute(builder: (context) => DetailPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailPage(
+                                movieId: movie[index]!.id!,
+                                tag: tagName,
+                              )));
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Hero(
-                    tag: 'test$index',
-                    child: Image.asset(
-                      'assets/images/ToyStory.jpg',
+                    tag: '$tagName-${movie[index]!.id}',
+                    child: Image.network(
+                      'http://image'
+                      '.tmdb.org/t/p/w500/${movie[index]!.posterPath}',
                       fit: BoxFit.fill,
                     ),
                   ),

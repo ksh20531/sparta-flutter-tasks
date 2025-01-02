@@ -1,16 +1,27 @@
-# flutter_movie_info_app
+## 영화 정보 서비스
 
-A new Flutter project.
+### 프로젝트 계기
 
-## Getting Started
+Flutter 외부 API 연동 및 클린 아키텍처 숙달 
 
-This project is a starting point for a Flutter application.
+### 개발 기간
 
-A few resources to get you started if this is your first Flutter project:
+2024.12.26 ~ 2025.01.02
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 기능
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. TMDB API 호출
+
+   1.1 현재 상영 중
+
+   1.2 인기순
+
+   1.3 평점순
+
+   1.4 개봉예정
+
+   1.5 상세
+
+2. 영화 정보 상세 페이지
+
+   2.1 Hero 태그 적용

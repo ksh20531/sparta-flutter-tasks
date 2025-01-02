@@ -12,4 +12,11 @@ class Genre {
           id: map['id'] as int?,
           name: map['name'] as String?,
         );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+    };
+  }
 }
